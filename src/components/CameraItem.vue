@@ -19,7 +19,7 @@
         </a-tooltip>
 
         <a-button type="primary" :class="{'btnMargin10':true,'btnStyle':true}" @click="() => this.addModalVisible=true" ghost>Add</a-button>
-        <a-button type="danger" :class="{'btnMargin5':true,'btnStyle':true}" @click="() => this.removeVisible=true" ghost>Remove</a-button>
+        <a-button type="danger" :class="{'btnMargin5':true,'btnStyle':true}" @click="removeClick" ghost>Remove</a-button>
         <a-modal
             title="Warning"
             :visible="removeVisible"
@@ -48,11 +48,11 @@
             </a-upload>
         </template>
         
-        <a-tooltip>
+        <a-tooltip placement="bottomRight">
             <template slot="title">
                 Export Camera List
             </template>
-            <a-button :class="{'btnMargin5':true}" @click="exportToJsonFile(cameras)">
+            <a-button :class="{'btnMargin5':true}" @click="exportToJsonFile(selectedRowKeys)">
                 <a-icon type="download" :style="{color: 'rgb(77,166,255)'}" />
             </a-button>
         </a-tooltip>    <br /><br />
@@ -187,32 +187,56 @@ export default {
             this.cameras=cameras
         },
 
-        selectRemove(select){
-            if(select.length === 0){
-                alert("list check plz")
-            } else{
-                select.sort(function(a,b){
-                    return b-a;     //desc
-                })
-                select.forEach(index => {
-                    deleteCamera(this.cameras[index]._id)
-                    this.cameras.splice(index,1)
-                })
-                this.selectedRowKeys=[]
-                this.removeVisible=false
+        removeClick(){
+            if(this.selectedRowKeys.length===0){
+                alert("camera check to remove!")
+            }else{
+                this.removeVisible=true
             }
         },
+        selectRemove(select){
+            select.sort(function(a,b){
+                return b-a;     //desc
+            })
+            select.forEach(index => {
+                deleteCamera(this.cameras[index]._id)
+                this.cameras.splice(index,1)
+            })
+            this.selectedRowKeys=[]
+            this.removeVisible=false
+        },
     
-        exportToJsonFile(jsonData) {
-            let dataStr = JSON.stringify(jsonData,null,2);
-            let dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+        // exportToJsonFile(jsonData) {                                 all data export just one click
+        //     let dataStr = JSON.stringify(jsonData,null,2);
+        //     let dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
 
-            let exportFileDefaultName = 'cameraListData.json';
+        //     let exportFileDefaultName = 'cameraListData.json';
 
-            let linkElement = document.createElement('a');
-            linkElement.setAttribute('href', dataUri);
-            linkElement.setAttribute('download', exportFileDefaultName);
-            linkElement.click();
+        //     let linkElement = document.createElement('a');
+        //     linkElement.setAttribute('href', dataUri);
+        //     linkElement.setAttribute('download', exportFileDefaultName);
+        //     linkElement.click();
+        // },
+
+        exportToJsonFile(selected) {
+            if(selected.length === 0){
+                alert("camera check to export!")
+            }else{
+                let jsonData=[];
+                selected.forEach(idx=>{
+                    jsonData.push(this.cameras[idx])
+                })
+                
+                let dataStr = JSON.stringify(jsonData,null,2);
+                let dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+
+                let exportFileDefaultName = 'cameraListData.json';
+
+                let linkElement = document.createElement('a');
+                linkElement.setAttribute('href', dataUri);
+                linkElement.setAttribute('download', exportFileDefaultName);
+                linkElement.click();
+            }
         },
         
         beforeUpload(file){
@@ -234,11 +258,15 @@ export default {
         },
 
         onSearch(value){
-            searchCamera(this.searchType,value).then(data => {
-                this.cameras = data.cameras
-            })
-            .catch((err => alert(err)));
-            console.log(`input ${this.searchType} value: ${value}`)
+            if(this.searchType === null){
+                alert("select searchType please!")
+            }else{
+                searchCamera(this.searchType,value).then(data => {
+                    this.cameras = data.cameras
+                })
+                .catch((err => alert(err)));
+                console.log(`input ${this.searchType} value: ${value}`)
+            }
         },
 
         handleChange(value){
