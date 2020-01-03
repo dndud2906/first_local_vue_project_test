@@ -155,9 +155,6 @@ export default {
       };
     },
     methods:{
-        addCamera(camera){
-            this.cameras = [...this.cameras, camera];
-        },
         setVisible(mode, visible){
             if(mode==="add"){
                 this.addModalVisible=visible
@@ -165,6 +162,10 @@ export default {
             else if(mode==="edit"){
                 this.editModalVisible=visible
             }
+        },
+
+        addCamera(camera){
+            this.cameras = [...this.cameras, camera];
         },
 
         editClick(record){
@@ -206,7 +207,7 @@ export default {
             this.removeVisible=false
         },
     
-        // exportToJsonFile(jsonData) {                                 all data export just one click
+        // exportToJsonFile(jsonData) {                                                                         all data export just one click
         //     let dataStr = JSON.stringify(jsonData,null,2);
         //     let dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
 
@@ -226,7 +227,7 @@ export default {
                 selected.forEach(idx=>{
                     jsonData.push(this.cameras[idx])
                 })
-                
+
                 let dataStr = JSON.stringify(jsonData,null,2);
                 let dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
 
@@ -287,10 +288,12 @@ export default {
 <style lang="scss">
     .btnMargin10{
         margin-left: 10px;
+        margin-right: 0px;
     }
 
     .btnMargin5{
         margin-left: 5px;
+        margin-right: 0px;
     }
 
     .fontStyle{
@@ -311,10 +314,4 @@ export default {
             width:85px;
         }
     }
-
-    .ant-btn{
-        margin-right:0px;
-    }
-
-    
 </style>

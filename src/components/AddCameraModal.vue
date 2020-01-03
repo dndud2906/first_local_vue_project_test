@@ -258,14 +258,6 @@ export default {
 </script>
 
 <style lang="scss">
-    .btnStyle1{
-        margin-left: 15px;
-    }
-
-    .btnStyle2{
-        margin-left: 5px;
-    }
-
     .ant-form-inline .ant-form-item{
     margin-right:0px;
     }
@@ -282,6 +274,7 @@ export default {
         margin-right: 12px;
         font-weight: bold;
     }
+
     .ant-collapse-content .ant-collapse-content-box{
         padding-right:0px;
         padding-left:0px;

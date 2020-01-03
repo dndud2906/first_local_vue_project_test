@@ -17,7 +17,7 @@ const cameraSchema = Schema(
         // height: Number,
         // fps: Number,
         // rcNum: Number,
-        // period: Number //수정 할 수 있음 이름
+        // period: Number 
     }
 );
 

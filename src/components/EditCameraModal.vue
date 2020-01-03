@@ -259,14 +259,6 @@ export default {
 </script>
 
 <style lang="scss">
-    .btnStyle1{
-        margin-left: 15px;
-    }
-
-    .btnStyle2{
-        margin-left: 5px;
-    }
-    
     .ant-form-inline .ant-form-item{
     margin-right:0px;
     }
