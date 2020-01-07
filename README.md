@@ -72,8 +72,8 @@ and select .json file you want to push camera list
 ![Camera Import](https://github.com/dndud2906/first_local_vue_project/blob/master/example/import.gif)
 
 ### Vue CLI download
-npm install -g @vue/cli     --me
-or
+npm install -g @vue/cli     --me  
+or  
 yarn global add @vue/cli
 
 ### Customize configuration
