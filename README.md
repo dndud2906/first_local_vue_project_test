@@ -77,6 +77,4 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 <iframe width="500 height="500" src="https://youtu.be/ggtW89BKrlA" 
 frameborder="0" gesture="media" allowfullscreen=""></iframe>
 
-<iframe width="640" height="360" src="https://youtu.be/ggtW89BKrlA"  
-frameborder="0" gesture="media" allowfullscreen=""></iframe>
 
