@@ -24,7 +24,7 @@ yarn lint
 ```
 Add button click -> add camera modal -> input information -> save button click -> enter this camera data to MongoDB and spread to screen
 ```
-![Camera Add](https://github.com/dndud2906/first_local_vue_project/blob/master/example/test.gif)
+![Camera Add](https://github.com/dndud2906/first_local_vue_project/blob/master/example/add.gif)
 
 ## Edit(Update)
 ```
